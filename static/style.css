@@ -1,0 +1,404 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: rgb(13 110 253);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Hero Section Styles */
+.hero {
+    background-color: rgb(13 110 253);
+    color: white;
+    padding: 4rem 0;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Signup Section */
+.signup-section {
+    background-color: rgb(13 110 253);
+    padding: 4rem 0;
+}
+
+.signup-section .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-section h3 {
+    margin-bottom: 1.5rem;
+    color: #005f99;
+}
+
+/* Signin Section */
+.signin-section {
+    background-color: rgb(13 110 253);
+    padding: 4rem 0;
+}
+
+.signin-section .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signin-section h3 {
+    margin-bottom: 1.5rem;
+    color: #005f99;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(13 110 253);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    cursor: pointer;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: rgb(13 110 253);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: rgb(13 110 253);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+.burger {
+    display: none;
+}
+
+/* Course Container */
+.course-container {
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-container h2 {
+    margin-bottom: 1rem;
+}
+
+.course-container label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.course-container .btn {
+    margin-top: 1rem;
+    padding: 0.5rem 2rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.course-container .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Learning Level Container */
+.level-container {
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.level-container h2 {
+    margin-bottom: 1rem;
+}
+
+.level-container label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.level-container .btn {
+    margin-top: 1rem;
+    padding: 0.5rem 2rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.level-container .btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* Course Content Container */
+.content-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-container h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.textual-content, .audio-content {
+    margin-bottom: 2rem;
+}
+
+.textual-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.audio-content audio {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+
+/* Quiz Content */
+#quizContainer {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#quizContainer h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.question {
+    margin-bottom: 1.5rem;
+}
+
+.question h3 {
+    margin-bottom: 0.5rem;
+}
+
+.submit-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.75rem 1.5rem;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #003d80;
+}
+
+#result {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+    #quizContainer {
+        padding: 1.5rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+/* Styling the submit button on small screens */
+@media only screen and (max-width: 768px) {
+    .content-container {
+        padding: 1.5rem;
+    }
+    
+    .textual-content p {
+        font-size: 1rem;
+    }
+}
+
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #007BFF;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+    }
+}
+
+
+/* Responsive Design for Signin */
+@media (max-width: 768px) {
+    .signin-section .card {
+        margin-top: 2rem;
+    }
+}
+
+
+/* Responsive Design for Signup */
+@media (max-width: 768px) {
+    .signup-section .card {
+        margin-top: 2rem;
+    }
+}
+
+
+/* Footer Styles */
+footer {
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: auto;  /* Ensures the footer stays at the bottom */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cta-buttons .btn {
+        display: block;
+        margin: 1rem auto;
+    }
+}
