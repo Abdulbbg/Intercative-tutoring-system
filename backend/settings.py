@@ -16,11 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = [
-    'localhost', 
-    '127.0.0.1', 
-    'interactive-tutoring-system.onrender.com'  # Add this domain
-]
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +27,7 @@ SECRET_KEY = 'django-insecure--w*jxp@gi$898r+mie=lz7h9n*p!q1%zg59z%+2-b0!s-j)o1@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
