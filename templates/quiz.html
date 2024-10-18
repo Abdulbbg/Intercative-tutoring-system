@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ course_name }} Quiz</title>
+</head>
+<body>
+    <h1>{{ course_name }} Quiz</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for quiz in user_quiz %}
+            <div>
+                <p>{{ quiz.question }}</p>
+                <input type="text" name="answer_{{ quiz.id }}" placeholder="Your answer">
+            </div>
+        {% endfor %}
+        <button type="submit">Submit Quiz</button>
+    </form>
+</body>
+</html>

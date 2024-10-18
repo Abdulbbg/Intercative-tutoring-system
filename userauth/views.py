@@ -4,6 +4,9 @@ from .forms import SignupForm, LoginForm
 from django.contrib.auth import authenticate, login
 
 
+def index(request):
+    return render(request, 'index.html')
+
 
 def signup(request):
     if request.method == 'POST':
