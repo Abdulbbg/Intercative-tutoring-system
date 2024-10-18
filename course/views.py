@@ -32,7 +32,7 @@ def course_selection_view(request):
 
             try:
                 response = requests.post(
-                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAOo9OJ8nVMRqMbSVeS7iMhzR6-ti-r3ZQ',
+                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyD-5HePBxjbQDrP7gOlxn2ZfxbuwJQ2m68',
                     json=payload
                 )
                 print("Status Code:", response.status_code)
