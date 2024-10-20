@@ -8,9 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -19,19 +21,66 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
+
         h1 {
             text-align: center;
             color: #2c3e50;
+            margin-bottom: 20px;
         }
+
+        h2, h3 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+
         p {
             line-height: 1.6;
             margin-bottom: 10px;
         }
+
+        ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         footer {
             margin-top: 20px;
             text-align: center;
             font-size: 0.8rem;
             color: gray;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -39,13 +88,51 @@
     <div class="container">
         <h1>{{ course_title }}</h1>
 
-        <div class="content">
-            <p>{{ generated_content }}</p>
+        <div id="content">
+            {{ generated_content|safe }}
+        </div>
+
+        <div class="controls">
+            <button onclick="startReading()">🔊 Play</button>
+            <button onclick="pauseReading()">⏸️ Pause</button>
+            <button onclick="resumeReading()">▶️ Resume</button>
+            <button onclick="stopReading()">⏹️ Stop</button>
         </div>
 
         <footer>
             <p>&copy; 2024 Interactive Tutoring System</p>
         </footer>
     </div>
+
+    <script>
+        let speechSynthesis = window.speechSynthesis;
+        let utterance;
+
+        function startReading() {
+            const content = document.getElementById('content').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';  // Set language
+            utterance.rate = 1;        // Set speaking speed (1 is normal speed)
+            speechSynthesis.speak(utterance);
+        }
+
+        function pauseReading() {
+            if (speechSynthesis.speaking && !speechSynthesis.paused) {
+                speechSynthesis.pause();
+            }
+        }
+
+        function resumeReading() {
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            }
+        }
+
+        function stopReading() {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+        }
+    </script>
 </body>
 </html>

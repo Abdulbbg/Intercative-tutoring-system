@@ -46,5 +46,22 @@ class UserCourse(models.Model):
         return f"{self.user.username} - {self.course.name} ({self.level})"
 
 
+class CourseContent(models.Model):
+    course_title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Content for {self.course_title}"
+
+class QuizQuestion(models.Model):
+    course_content = models.ForeignKey(CourseContent, related_name='quiz_questions', on_delete=models.CASCADE)
+    content = models.TextField()
+    is_answered = models.BooleanField(default=False)  # Optional: Track if the question has been answered
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Question: {self.content[:30]}..." 
+    
 
        
