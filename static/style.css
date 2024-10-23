@@ -13,11 +13,38 @@ body {
     margin: 0 auto;
 }
 
-/* Hero Section Styles */
 .hero {
-    background-color: rgb(13 110 253);
+    position: relative;
+    overflow: hidden;
     color: white;
     padding: 4rem 0;
+    height: 100vh;
+}
+
+.sliding-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Allow smooth transition between images */
+    height: 100%;
+    display: flex;
+    animation: slide 10s linear infinite;
+}
+
+.sliding-background img {
+    width: 50%; /* Each image takes half the width */
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
 }
 
 .hero h2 {
@@ -132,14 +159,7 @@ button:hover {
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: rgb(13 110 253);
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+
 
 /* Navbar Styling */
 .navbar {

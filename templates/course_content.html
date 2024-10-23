@@ -82,6 +82,22 @@
         .controls button:hover {
             background-color: #2980b9;
         }
+
+        .question-block {
+            margin-bottom: 15px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        #score-result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -89,30 +105,79 @@
         <h1>{{ course_title }}</h1>
 
         <div id="content">
-            {{ generated_content|safe }}
+            <h2>Course Content</h2>
+            {% for paragraph in content_paragraphs %}
+                <p>{{ paragraph }}</p>
+            {% endfor %}
         </div>
 
-        <div class="controls">
-            <button onclick="startReading()">🔊 Play</button>
-            <button onclick="pauseReading()">⏸️ Pause</button>
-            <button onclick="resumeReading()">▶️ Resume</button>
-            <button onclick="stopReading()">⏹️ Stop</button>
-        </div>
+        <form id="quiz-form" method="POST">
+            <h2>Quiz</h2>
+            {% for question in quiz_questions %}
+                <div class="question-block">
+                    <p><strong>{{ question.question }}</strong></p>
+                    {% for option in question.options %}
+                        <label>
+                            <input type="radio" name="question_{{ forloop.parentloop.counter }}" value="{{ option }}" required>
+                            {{ option }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+                <hr>
+            {% endfor %}
+            <button type="submit">Submit Answers</button>
+        </form>
 
-        <footer>
-            <p>&copy; 2024 Interactive Tutoring System</p>
-        </footer>
+        <div id="score-result"></div>
     </div>
 
+    <div class="controls">
+        <button onclick="startReading()">🔊 Play</button>
+        <button onclick="pauseReading()">⏸️ Pause</button>
+        <button onclick="resumeReading()">▶️ Resume</button>
+        <button onclick="stopReading()">⏹️ Stop</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Interactive Tutoring System</p>
+    </footer>
+
     <script>
+        document.getElementById('quiz-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const answers = {};
+
+            // Collect user answers
+            formData.forEach((value, key) => {
+                answers[key] = value;
+            });
+
+            // Send answers to the server for evaluation
+            const response = await fetch('{% url "course:submit_quiz" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(answers)
+            });
+
+            const result = await response.json();
+            document.getElementById('score-result').innerText = `Your Score: ${result.score}`;
+        });
+
         let speechSynthesis = window.speechSynthesis;
         let utterance;
 
         function startReading() {
-            const content = document.getElementById('content').innerText;
+            const content = Array.from(document.querySelectorAll('#content p'))
+                                .map(p => p.innerText)
+                                .join('\n\n');
             utterance = new SpeechSynthesisUtterance(content);
-            utterance.lang = 'en-US';  // Set language
-            utterance.rate = 1;        // Set speaking speed (1 is normal speed)
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
             speechSynthesis.speak(utterance);
         }
 

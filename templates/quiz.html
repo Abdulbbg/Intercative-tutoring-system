@@ -3,77 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .options input {
-            margin-right: 10px;
-        }
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-    </style>
+    <title>{{ course_title }}</title>
 </head>
 <body>
     <div class="container">
-        <h1>Quiz</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {% for question in questions %}
-                <div class="question">
-                    <p>{{ question.question_text }}</p>
-                    <div class="options">
-                        <label>
-                            <input type="radio" name="{{ question.id }}" value="{{ question.option_1 }}" required>
-                            {{ question.option_1 }}
-                        </label><br>
-                        <label>
-                            <input type="radio" name="{{ question.id }}" value="{{ question.option_2 }}" required>
-                            {{ question.option_2 }}
-                        </label><br>
-                        <label>
-                            <input type="radio" name="{{ question.id }}" value="{{ question.option_3 }}" required>
-                            {{ question.option_3 }}
-                        </label><br>
-                        <label>
-                            <input type="radio" name="{{ question.id }}" value="{{ question.option_4 }}" required>
-                            {{ question.option_4 }}
-                        </label>
-                    </div>
-                </div>
-            {% endfor %}
-            <button type="submit">Submit Quiz</button>
+        <h1>{{ course_title }}</h1>
+
+        <div id="content">
+            <p>{{ generated_content|safe }}</p>
+        </div>
+
+        <form id="quiz-form">
+            <h2>Quiz</h2>
+            <div id="quiz-container">
+                <pre>{{ quiz_data }}</pre>  <!-- Render quiz data for testing -->
+            </div>
+            <button type="submit">Submit Answers</button>
         </form>
+
+        <div id="score-result"></div>
     </div>
+
+    <script>
+        document.getElementById('quiz-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const answers = {};  // Collect answers (Assume user selects answers here)
+            const response = await fetch('/submit-quiz/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+                body: JSON.stringify(answers)
+            });
+            const result = await response.json();
+            document.getElementById('score-result').innerText = `Your Score: ${result.score}`;
+        });
+    </script>
 </body>
 </html>
