@@ -48,7 +48,7 @@ def course_selection_view(request):
                 response = requests.post(
                     'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyD-5HePBxjbQDrP7gOlxn2ZfxbuwJQ2m68',
                     json=payload,
-                    timeout=10
+                    timeout=30
                 )
                 if response.status_code == 200:
                     content = response.json().get('candidates', [])[0]['content']['parts'][0]['text']
@@ -179,7 +179,7 @@ def submit_quiz(request):
             }
 
             # Check if the payload is serializable (debug step)
-            print(json.dumps(evaluation_payload))  # This will raise an error if the payload isn't valid
+            # print(json.dumps(evaluation_payload))  # This will raise an error if the payload isn't valid
 
             # Send the POST request
             response = requests.post(
